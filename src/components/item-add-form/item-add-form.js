@@ -16,10 +16,12 @@ export default class ItemAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onItemAdded(this.state.label);
-        this.setState({
-            label: ''
-        });
+        if( this.state.label !== '' ) {
+            this.props.onItemAdded(this.state.label);
+            this.setState({
+                label: ''
+            });
+        }
     };
 
     render() {
@@ -32,10 +34,9 @@ export default class ItemAddForm extends Component {
                         placeholder="What's need to be done?"
                         value={this.state.label}
                 />
-                <button
-                    className="btn btn-outline-secondary"
-                    onClick={this.onSubmit}>
-                    Add Item
+                <button className="btn btn-outline-secondary"
+                        onClick={this.onSubmit}>
+                        Add Item
                 </button>
             </form>
         )
